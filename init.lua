@@ -13,16 +13,16 @@ vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = " "
 
-require("lazy").setup(require("plugins"),opts)
+require("lazy").setup(require("plugins"), opts)
 
 require("onedark").load()
 
 
 -- auto configure lsp servers
 require("mason-lspconfig").setup_handlers {
-	function (server_name)
-		require('lspconfig')[server_name].setup {}
-	end,
+  function(server_name)
+    require('lspconfig')[server_name].setup {}
+  end,
 }
 
 -- luasnip setup
@@ -37,7 +37,7 @@ cmp.setup {
   },
   mapping = cmp.mapping.preset.insert({
     ['<C-u>'] = cmp.mapping.scroll_docs(-4), -- Up
-    ['<C-d>'] = cmp.mapping.scroll_docs(4), -- Down
+    ['<C-d>'] = cmp.mapping.scroll_docs(4),  -- Down
     -- C-b (back) C-f (forward) for snippet placeholder navigation.
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<CR>'] = cmp.mapping.confirm {
@@ -65,8 +65,8 @@ cmp.setup {
   }),
   sources = {
     { name = 'nvim_lsp' },
-       { name = 'luasnip' },
-       { name = 'path' },
+    { name = 'luasnip' },
+    { name = 'path' },
   },
 }
 
@@ -77,7 +77,7 @@ require("dap").adapters["pwa-node"] = {
   executable = {
     command = "node",
     -- 💀 Make sure to update this path to point to your installation
-    args = {"/home/subrath/Documents/debuggers/js-debug/src/dapDebugServer.js", "${port}"},
+    args = { "/home/subrath/Documents/debuggers/js-debug/src/dapDebugServer.js", "${port}" },
   }
 }
 
@@ -101,3 +101,8 @@ require("dap").configurations.typescript = {
     cwd = "${workspaceFolder}",
   },
 }
+
+require("keymaps")
+require("options")
+
+vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]

@@ -1,6 +1,3 @@
-local opts = { noremap = true, silent = true }
-local term_opts = { silent = true }
+local map = vim.keymap.set
 
-local keymap = vim.api.nvim_set_keymap
-
-keymap('n', '<C-s>', ':w<cr>')
+map({"i", "n", "v", "x"}, "<C-s>", "<esc><cmd>w<cr>")
