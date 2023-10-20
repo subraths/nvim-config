@@ -72,7 +72,9 @@ return {
   -- With the dev option, you can easily switch between the local and installed version of a plugin
   { "folke/noice.nvim", dev = true },
   "nvim-lua/plenary.nvim",
-  "nvim-telescope/telescope.nvim",
+  {
+    "nvim-telescope/telescope.nvim",
+  },
   {
     'windwp/nvim-autopairs',
     event = "InsertEnter",
@@ -132,7 +134,7 @@ opts = {},
       "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
       "MunifTanjim/nui.nvim",
     },
-    keys = {
+      keys = {
 	    {
 		    "<leader>e",
 		    function ()
