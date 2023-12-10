@@ -25,6 +25,11 @@ local plugins = {
   },
   { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
   { "max397574/better-escape.nvim", opts = {} },
+  { 
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    opts = {}
+  }
 }
 
 local opts = {}
