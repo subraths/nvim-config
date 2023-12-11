@@ -2,6 +2,9 @@ vim.cmd("set expandtab")
 vim.cmd("set tabstop=2")
 vim.cmd("set softtabstop=2")
 vim.cmd("set shiftwidth=2")
+vim.cmd("set number")
+vim.cmd("set relativenumber")
+vim.cmd("set clipboard=unnamedplus")
 vim.g.mapleader = ' '
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -40,6 +43,8 @@ local builtin = require("telescope.builtin")
 vim.keymap.set('n', 'ff', builtin.find_files, {})
 vim.keymap.set('n', 'fg', builtin.live_grep, {})
 vim.keymap.set('n', 'fb', builtin.buffers, {})
+
+vim.keymap.set('n', '<esc><esc>', '<cmd> nohlsearch <cr>')
 
 local config = require("nvim-treesitter.configs")
 config.setup({
