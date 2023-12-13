@@ -20,6 +20,9 @@ return {
 				ensure_installed = {"lua", "tsx", "javascript", "typescript"},
   			highlight = { enable = true },
   			indent = { enable = true },
+				autotag = {
+					enable = true,
+				}
 			})
 
 			local builtin = require("telescope.builtin")
