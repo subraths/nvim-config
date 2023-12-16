@@ -7,7 +7,7 @@ return {
 		"MunifTanjim/nui.nvim",
 		"3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
 	},
-	config = function ()
+	config = function()
 		local options = {
 			close_if_last_window = true,
 			window = {
@@ -15,6 +15,6 @@ return {
 			},
 		}
 		require("neo-tree").setup(options)
-		vim.keymap.set('n', '<C-n>', '<cmd>Neotree toggle<cr>')
-	end
+		vim.keymap.set("n", "<C-n>", "<cmd>Neotree toggle<cr>")
+	end,
 }

@@ -1,62 +1,77 @@
 return {
-  {
+	{
 		"catppuccin/nvim",
 		name = "catppuccin",
 		priority = 1000,
-		config = function ()
-			vim.cmd.colorscheme "catppuccin-mocha"
-		end
+		config = function()
+			vim.cmd.colorscheme("catppuccin-mocha")
+		end,
 	},
-  { "max397574/better-escape.nvim", opts = {} },
+	{ "max397574/better-escape.nvim", opts = {} },
 	{
-		'akinsho/bufferline.nvim',
+		"akinsho/bufferline.nvim",
 		version = "*",
 		opts = {},
-		dependencies = 'nvim-tree/nvim-web-devicons'
+		dependencies = "nvim-tree/nvim-web-devicons",
 	},
-  {
-    'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
+	{
+		"nvim-lualine/lualine.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
 		event = "VeryLazy",
 		opts = {
 			options = {
-				theme = 'dracula'
-			}
+				theme = "dracula",
+			},
 		},
-  },
-	{
-		'numToStr/Comment.nvim',
-    opts = {},
-    lazy = false,
 	},
 	{
-    'goolord/alpha-nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    config = function ()
-        require'alpha'.setup(require'alpha.themes.startify'.config)
-    end
+		"numToStr/Comment.nvim",
+		opts = {},
+		lazy = false,
 	},
 	{
-    'windwp/nvim-autopairs',
-    event = "InsertEnter",
+		"goolord/alpha-nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
-			local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-			local cmp = require('cmp')
-			cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
+			require("alpha").setup(require("alpha.themes.startify").config)
+		end,
+	},
+	{
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		config = function()
+			local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+			local cmp = require("cmp")
+			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 			require("nvim-autopairs").setup()
-		end
+		end,
 	},
 	{
 		"folke/trouble.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
-			vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end)
-			vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end)
-			vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end)
-			vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix") end)
-			vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end)
-			vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end)
-		end
+			local trouble = require("trouble")
+			local keymap = vim.keymap
+
+			keymap.set("n", "<leader>xx", function()
+				trouble.toggle()
+			end)
+			keymap.set("n", "<leader>xw", function()
+				trouble.toggle("workspace_diagnostics")
+			end)
+			keymap.set("n", "<leader>xd", function()
+				trouble.toggle("document_diagnostics")
+			end)
+			keymap.set("n", "<leader>xq", function()
+				trouble.toggle("quickfix")
+			end)
+			keymap.set("n", "<leader>xl", function()
+				trouble.toggle("loclist")
+			end)
+			keymap.set("n", "gR", function()
+				trouble.toggle("lsp_references")
+			end)
+		end,
 	},
 	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 	{ "lewis6991/gitsigns.nvim", opts = {} },
