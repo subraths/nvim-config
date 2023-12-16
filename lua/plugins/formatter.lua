@@ -6,6 +6,8 @@ return {
 				lua = { "stylua" },
 				javascript = { { "prettier", "prettierd" } },
 				typescript = { { "prettier", "prettierd" } },
+				["_"] = { "trim_whitespace" },
+				["*"] = { "codespell" },
 			},
 			format_on_save = {
 				lsp_fallback = true,
