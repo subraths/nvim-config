@@ -1,6 +1,6 @@
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-vim.o.clipboard = 'unnamedplus'
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+vim.o.clipboard = "unnamedplus"
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.tabstop = 2
@@ -8,3 +8,4 @@ vim.o.shiftwidth = 2
 vim.opt.termguicolors = true
 vim.opt.signcolumn = "yes"
 vim.opt.cursorline = true
+vim.opt.expandtab = true
