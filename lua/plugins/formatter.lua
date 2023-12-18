@@ -4,8 +4,8 @@ return {
 		opts = {
 			formatters_by_ft = {
 				lua = { "stylua" },
-				javascript = { { "prettier", "prettierd" } },
-				typescript = { { "prettier", "prettierd" } },
+				javascript = { { "prettierd", "prettier" } },
+				typescript = { { "prettierd", "prettier" } },
 				["_"] = { "trim_whitespace" },
 				["*"] = { "codespell" },
 			},

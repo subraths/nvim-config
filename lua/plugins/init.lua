@@ -69,8 +69,13 @@ return {
 	{
 		"akinsho/toggleterm.nvim",
 		opts = {
-      open_mapping = [[<c-\>]],
-      direction = 'float',
-    },
+			open_mapping = [[<c-\>]],
+			direction = "float",
+		},
+	},
+	{
+		"folke/todo-comments.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		opts = {},
 	},
 }
