@@ -3,17 +3,19 @@ return {
 		"hrsh7th/nvim-cmp",
 		version = false, -- last release is way too old
 		event = "InsertEnter",
+
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
 			"saadparwaiz1/cmp_luasnip",
 			"L3MON4D3/LuaSnip",
+			"Exafunction/codeium.nvim",
 		},
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local lspconfig = require("lspconfig")
-			local servers = { "lua_ls", "tailwindcss", "eslint", "tsserver" }
+			local servers = { "lua_ls", "tailwindcss", "tsserver" }
 
 			for _, lsp in ipairs(servers) do
 				lspconfig[lsp].setup({
@@ -63,6 +65,10 @@ return {
 					{ name = "luasnip" },
 					{ name = "path" },
 					{ name = "buffer" },
+					{
+						name = "codeium",
+						priority = 100,
+					},
 				},
 			})
 		end,
