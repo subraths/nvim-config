@@ -102,4 +102,7 @@ return {
 			require("codeium").setup({})
 		end,
 	},
+	{
+		"windwp/nvim-ts-autotag",
+	},
 }
