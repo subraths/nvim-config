@@ -29,13 +29,6 @@ return {
 		opts = {},
 		lazy = false,
 	},
-	{
-		"goolord/alpha-nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		config = function()
-			require("alpha").setup(require("alpha.themes.startify").config)
-		end,
-	},
 	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 	{ "lewis6991/gitsigns.nvim", opts = {} },
 	{

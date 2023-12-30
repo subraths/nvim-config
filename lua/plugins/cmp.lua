@@ -1,76 +1,79 @@
 return {
 	{
-		"hrsh7th/nvim-cmp",
-		version = false, -- last release is way too old
-		event = "InsertEnter",
-
+		"L3MON4D3/LuaSnip",
 		dependencies = {
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-buffer",
-			"hrsh7th/cmp-path",
+			"rafamadriz/friendly-snippets",
 			"saadparwaiz1/cmp_luasnip",
-			"L3MON4D3/LuaSnip",
-			"Exafunction/codeium.nvim",
 		},
 		config = function()
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-			local lspconfig = require("lspconfig")
-			local servers = { "lua_ls", "tailwindcss", "tsserver" }
-
-			for _, lsp in ipairs(servers) do
-				lspconfig[lsp].setup({
-					capabilities = capabilities,
-				})
-			end
-
-			local luasnip = require("luasnip")
-
+			require("luasnip.loaders.from_vscode").lazy_load()
+		end,
+	},
+	{
+		"hrsh7th/cmp-nvim-lsp",
+	},
+	{
+		"hrsh7th/nvim-cmp",
+		lazy = false,
+		dependencies = {
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+		},
+		config = function()
 			local cmp = require("cmp")
 			cmp.setup({
+				window = {
+					documentation = cmp.config.window.bordered(),
+					completion = cmp.config.window.bordered(),
+				},
 				snippet = {
 					expand = function(args)
-						luasnip.lsp_expand(args.body)
+						require("luasnip").lsp_expand(args.body)
 					end,
 				},
 				mapping = cmp.mapping.preset.insert({
-					["<C-u>"] = cmp.mapping.scroll_docs(-4), -- Up
-					["<C-d>"] = cmp.mapping.scroll_docs(4), -- Down
-					-- C-b (back) C-f (forward) for snippet placeholder navigation.
+					["<C-b>"] = cmp.mapping.scroll_docs(-4),
+					["<C-f>"] = cmp.mapping.scroll_docs(4),
 					["<C-Space>"] = cmp.mapping.complete(),
-					["<CR>"] = cmp.mapping.confirm({
-						behavior = cmp.ConfirmBehavior.Replace,
-						select = true,
-					}),
+					["<C-e>"] = cmp.mapping.abort(),
+					["<CR>"] = cmp.mapping.confirm({ select = true }),
 					["<Tab>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_next_item()
-						elseif luasnip.expand_or_jumpable() then
-							luasnip.expand_or_jump()
+						elseif vim.fn["vsnip#available"](1) == 1 then
+							feedkey("<Plug>(vsnip-expand-or-jump)", "")
+						elseif has_words_before() then
+							cmp.complete()
 						else
-							fallback()
+							fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
 						end
 					end, { "i", "s" }),
-					["<S-Tab>"] = cmp.mapping(function(fallback)
+
+					["<S-Tab>"] = cmp.mapping(function()
 						if cmp.visible() then
 							cmp.select_prev_item()
-						elseif luasnip.jumpable(-1) then
-							luasnip.jump(-1)
-						else
-							fallback()
+						elseif vim.fn["vsnip#jumpable"](-1) == 1 then
+							feedkey("<Plug>(vsnip-jump-prev)", "")
 						end
 					end, { "i", "s" }),
 				}),
-				sources = {
+				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
 					{ name = "luasnip" },
 					{ name = "path" },
+					{ name = "codeium" },
+				}, {
 					{ name = "buffer" },
-					{
-						name = "codeium",
-						priority = 100,
-					},
-				},
+				}),
 			})
 		end,
 	},
 }
+
+-- "Exafunction/codeium.nvim",
+--
+-- 		{ name = "path" },
+-- 		{
+-- 			name = "codeium",
+-- 			priority = 100,
+-- 		},
