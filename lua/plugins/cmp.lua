@@ -5,9 +5,6 @@ return {
 			"rafamadriz/friendly-snippets",
 			"saadparwaiz1/cmp_luasnip",
 		},
-		config = function()
-			require("luasnip.loaders.from_vscode").lazy_load()
-		end,
 	},
 	{
 		"hrsh7th/cmp-nvim-lsp",
@@ -21,6 +18,15 @@ return {
 		},
 		config = function()
 			local cmp = require("cmp")
+
+			local luasnip = require("luasnip")
+
+			luasnip.filetype_extend("javascript", { "html" })
+			luasnip.filetype_extend("javascriptreact", { "html" })
+			luasnip.filetype_extend("typescriptreact", { "html" })
+
+			require("luasnip.loaders.from_vscode").lazy_load()
+
 			cmp.setup({
 				window = {
 					documentation = cmp.config.window.bordered(),

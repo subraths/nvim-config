@@ -12,6 +12,7 @@ return {
 			close_if_last_window = true,
 			window = {
 				width = 32,
+				position = "right",
 			},
 		}
 		require("neo-tree").setup(options)
