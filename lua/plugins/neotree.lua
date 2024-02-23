@@ -11,7 +11,7 @@ return {
 		local options = {
 			close_if_last_window = true,
 			window = {
-				width = 32,
+				width = 36,
 				position = "right",
 			},
 		}
