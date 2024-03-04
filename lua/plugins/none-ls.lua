@@ -10,12 +10,11 @@ return {
 				null_ls.builtins.formatting.trim_newlines,
 				null_ls.builtins.formatting.trim_whitespace,
 				null_ls.builtins.diagnostics.eslint_d,
+				null_ls.builtins.diagnostics.rustfmt,
 			},
 		})
 
 		vim.keymap.set("n", "gf", vim.lsp.buf.format, {})
-		vim.keymap.set("i", "<C-s>", "<esc><cmd>w<cr>")
-		vim.keymap.set("n", "<C-s>", "<cmd>w<cr>")
 
 		vim.api.nvim_create_autocmd("BufWritePre", {
 			pattern = "*",
